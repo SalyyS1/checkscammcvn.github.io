@@ -35,29 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
       discordName: document.getElementById('discord-name').value.trim(),
       facebookLink: document.getElementById('facebook-link').value.trim(),
       server: document.getElementById('server').value,
-      proofImages: document.getElementById('proof-images').value,
+      proofImages: document.getElementById('proof-images').value.trim(),
       description: document.getElementById('incident-description').value.trim()
     };
     
-    // Parse uploaded images from JSON string
-    let uploadedImages = [];
-    try {
-      if (formData.proofImages) {
-        uploadedImages = JSON.parse(formData.proofImages);
-      }
-    } catch (error) {
-      console.error('Error parsing uploaded images:', error);
-    }
-    
     // Validate required fields
-    if (!formData.minecraftName || !formData.discordId || uploadedImages.length === 0 || !formData.description) {
-      showNotification('error', 'Vui lòng điền đầy đủ các trường bắt buộc và tải lên ít nhất một ảnh');
+    if (!formData.minecraftName || !formData.discordId || !formData.proofImages || !formData.description) {
+      showNotification('error', 'Vui lòng điền đầy đủ các trường bắt buộc');
       resetSubmitButton();
       return;
     }
-    
-    // Replace proofImages with array of image data
-    formData.proofImages = uploadedImages;
     
     // Validate Discord ID format (numbers only)
     if (!/^\d+$/.test(formData.discordId)) {

@@ -3,8 +3,7 @@ class DirectGitHubSubmission {
   constructor(repoOwner, repoName) {
     this.repoOwner = repoOwner;
     this.repoName = repoName;
-    this.baseUrl = `/api/github-api`; // Use Netlify function instead of direct GitHub API
-    this.imgurStorage = new ImgurStorage();
+    this.baseUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
   }
   
   // Generate a unique report ID
@@ -21,22 +20,15 @@ class DirectGitHubSubmission {
   }
   
   // Format report data for submission
-  async formatReportData(formData, existingReports) {
+  formatReportData(formData, existingReports) {
     const reportId = this.generateReportId(existingReports);
     const currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
     
-    // Handle uploaded images using Imgur API
-    let proofImages = [];
-    if (Array.isArray(formData.proofImages) && formData.proofImages.length > 0) {
-      // Upload images to Imgur
-      const uploadResult = await this.imgurStorage.uploadImages(formData.proofImages);
-      
-      if (uploadResult.success) {
-        proofImages = uploadResult.images.map(img => img.url);
-      } else {
-        throw new Error('Failed to upload images: ' + uploadResult.message);
-      }
-    }
+    // Split proof images by comma and trim whitespace
+    const proofImages = formData.proofImages
+      .split(',')
+      .map(url => url.trim())
+      .filter(url => url.length > 0);
     
     return {
       id: reportId,
@@ -56,122 +48,12 @@ class DirectGitHubSubmission {
     };
   }
   
-  // Directly update reports.json file in GitHub repository using Netlify function
+  // Directly update reports.json file in GitHub repository
   async updateReportsFile(reportData, existingReports) {
     try {
       // Add new report to existing reports
       existingReports.push(reportData);
       
-      // Convert to JSON string
-      const updatedContent = JSON.stringify(existingReports, null, 2);
-      
-      // Use Netlify function to update GitHub file
-      const response = await fetch(this.baseUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          action: 'updateFile',
-          owner: this.repoOwner,
-          repo: this.repoName,
-          path: 'data/reports.json',
-          content: updatedContent,
-          message: `Add report ${reportData.id}`
-        })
-      });
-      
-      // Check response
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Error response from GitHub API:', errorData);
-        throw new Error(`GitHub API error: ${errorData.message || 'Unknown error'}`);
-      }
-      
-      const result = await response.json();
-      console.log('GitHub API response:', result);
-      
-      // Return success
-      return {
-        success: true,
-        message: 'Report added successfully',
-        reportId: reportData.id
-      };
-    } catch (error) {
-      console.error('Error updating reports file:', error);
-      return {
-        success: false,
-        message: 'Failed to update reports file: ' + error.message
-      };
-    }
-  }
-  
-  // Process a report submission
-  async submitReport(formData, existingReports) {
-    try {
-      // Validate required fields
-      if (!formData.minecraftName || !formData.discordId || !formData.proofImages || !formData.description) {
-        return {
-          success: false,
-          message: 'Missing required fields'
-        };
-      }
-      
-      // Format the report data with Imgur image storage
-      const reportData = await this.formatReportData(formData, existingReports);
-      
-      // Update the reports.json file using Netlify function
-      return await this.updateReportsFile(reportData, existingReports);
-    } catch (error) {
-      console.error('Error submitting report:', error);
-      return {
-        success: false,
-        message: 'Failed to submit report: ' + error.message
-      };
-    }
-  }
-  
-  // Get top reported scammers
-  getTopScammers(reports, limit = 3) {
-    try {
-      // Group reports by name
-      const scammerCounts = {};
-      reports.forEach(report => {
-        if (!scammerCounts[report.name]) {
-          scammerCounts[report.name] = {
-            name: report.name,
-            discord: report.discord,
-            discord_name: report.discord_name,
-            count: 0,
-            confirmVotes: 0
-          };
-        }
-        scammerCounts[report.name].count++;
-        scammerCounts[report.name].confirmVotes += report.votes.confirm;
-      });
-      
-      // Convert to array and sort by count
-      const scammers = Object.values(scammerCounts);
-      scammers.sort((a, b) => {
-        // First sort by report count
-        if (b.count !== a.count) {
-          return b.count - a.count;
-        }
-        // If counts are equal, sort by confirm votes
-        return b.confirmVotes - a.confirmVotes;
-      });
-      
-      // Return top N scammers
-      return scammers.slice(0, limit);
-    } catch (error) {
-      console.error('Error getting top scammers:', error);
-      return [];
-    }
-  }
-}
-
-// Explicitly expose the class to the global window object
-window.DirectGitHubSubmission = DirectGitHubSubmission;
       // In a real implementation, this would:
       // 1. Get the current file's SHA
       // 2. Create a new commit directly to main branch
@@ -197,27 +79,19 @@ window.DirectGitHubSubmission = DirectGitHubSubmission;
   
   // Process a report submission
   async submitReport(formData, existingReports) {
-    try {
-      // Validate required fields
-      if (!formData.minecraftName || !formData.discordId || !formData.proofImages || !formData.description) {
-        return {
-          success: false,
-          message: 'Missing required fields'
-        };
-      }
-      
-      // Format the report data with Gist image storage
-      const reportData = await this.formatReportData(formData, existingReports);
-      
-      // Directly update the reports.json file
-      return await this.updateReportsFile(reportData, existingReports);
-    } catch (error) {
-      console.error('Error submitting report:', error);
+    // Validate required fields
+    if (!formData.minecraftName || !formData.discordId || !formData.proofImages || !formData.description) {
       return {
         success: false,
-        message: 'Failed to submit report: ' + error.message
+        message: 'Missing required fields'
       };
     }
+    
+    // Format the report data
+    const reportData = this.formatReportData(formData, existingReports);
+    
+    // Directly update the reports.json file
+    return await this.updateReportsFile(reportData, existingReports);
   }
   
   // Get top reported scammers

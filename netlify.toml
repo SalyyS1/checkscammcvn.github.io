@@ -1,7 +1,6 @@
 [build]
   functions = "functions"
   publish = "."
-  command = "npm run build"
 
 [dev]
   functions = "functions"
@@ -14,22 +13,6 @@
   to = "/index.html"
   status = 200
 
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-[functions]
-  # Increase timeout for functions to handle image processing
-  node_bundler = "esbuild"
-  external_node_modules = ["sharp"]
-  included_files = ["data/**"]
-
 [build.environment]
   # GitHub token will be set in Netlify UI
   # GITHUB_TOKEN = "xxx"
-  NODE_VERSION = "16"
-
-[functions."github-api"]
-  # Increase timeout for GitHub API calls
-  timeout = 30
