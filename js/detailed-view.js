@@ -12,10 +12,10 @@ function showDetailedReport(report) {
       <div class="mt-4">
         <h4 class="font-bold mb-2">Bằng chứng:</h4>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-          ${report.proof.map((imageData, index) => `
+          ${report.proof.map((imageUrl, index) => `
             <div class="relative">
-              <img src="${imageData}" alt="Bằng chứng ${index + 1}" class="w-full h-32 object-cover rounded cursor-pointer hover:opacity-90" 
-                onclick="openImageViewer('${imageData}')">
+              <img src="${imageUrl}" alt="Bằng chứng ${index + 1}" class="w-full h-32 object-cover rounded cursor-pointer hover:opacity-90" 
+                onclick="openImageViewer('${imageUrl}')">
             </div>
           `).join('')}
         </div>
