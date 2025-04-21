@@ -4,7 +4,7 @@ class DirectGitHubSubmission {
     this.repoOwner = repoOwner;
     this.repoName = repoName;
     this.baseUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
-    this.gistStorage = new GitHubGistStorage(repoOwner);
+    this.imgurStorage = new ImgurStorage();
   }
   
   // Generate a unique report ID
@@ -25,11 +25,11 @@ class DirectGitHubSubmission {
     const reportId = this.generateReportId(existingReports);
     const currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
     
-    // Handle uploaded images using GitHub Gists
+    // Handle uploaded images using Imgur API
     let proofImages = [];
     if (Array.isArray(formData.proofImages) && formData.proofImages.length > 0) {
-      // Upload images to GitHub Gists
-      const uploadResult = await this.gistStorage.uploadImages(formData.proofImages, reportId);
+      // Upload images to Imgur
+      const uploadResult = await this.imgurStorage.uploadImages(formData.proofImages);
       
       if (uploadResult.success) {
         proofImages = uploadResult.images.map(img => img.url);
