@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StellaStudio - Tra cứu và báo cáo lừa đảo Minecraft Việt Nam</title>
+    <meta name="description" content="Nền tảng tra cứu và báo cáo người chơi lừa đảo trong cộng đồng Minecraft Việt Nam">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <header class="bg-gray-800 shadow-lg">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <h1 class="text-2xl md:text-3xl font-bold text-green-400">
+                        <i class="fas fa-shield-alt mr-2"></i>StellaStudio - CheckScam
+                    </h1>
+                </div>
+                <nav>
+                    <ul class="flex space-x-6">
+                        <li><a href="#" class="hover:text-green-400 transition-colors duration-200">Trang chủ</a></li>
+                        <li><a href="#search" class="hover:text-green-400 transition-colors duration-200">Tra cứu</a></li>
+                        <li><a href="#report" class="hover:text-green-400 transition-colors duration-200">Báo cáo</a></li>
+                        <li><a href="#about" class="hover:text-green-400 transition-colors duration-200">Giới thiệu</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+
+        <section class="text-center py-12 mb-12 border-b border-gray-700">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Phòng cháy hơn chữa cháy</h2>
+            <p class="text-xl text-gray-300 mb-8">Tra cứu người chơi trước khi giao dịch</p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="#search" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-search mr-2"></i>Tra cứu ngay
+                </a>
+                <a href="#report" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>Báo cáo lừa đảo
+                </a>
+            </div>
+        </section>
+
+
+        <section id="search" class="mb-16">
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center">
+                    <i class="fas fa-search mr-2 text-green-400"></i>Tra cứu người chơi
+                </h2>
+                <form id="search-form" class="mb-8">
+                    <div class="flex flex-col md:flex-row gap-4 mb-4">
+                        <div class="flex-1">
+                            <input type="text" id="search-query" placeholder="Nhập tên Minecraft, ID Discord, hoặc link Facebook..."
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400">
+                        </div>
+                        <button type="submit" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                            <i class="fas fa-search mr-2"></i>Tìm kiếm
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap gap-4 text-sm text-gray-300">
+                        <span class="flex items-center"><i class="fas fa-info-circle mr-1 text-blue-400"></i>Hỗ trợ tìm kiếm:</span>
+                        <span class="flex items-center"><i class="fas fa-check mr-1 text-green-400"></i>Tên Minecraft</span>
+                        <span class="flex items-center"><i class="fas fa-check mr-1 text-green-400"></i>ID Discord (ví dụ: 704862684889219173)</span>
+                        <span class="flex items-center"><i class="fas fa-check mr-1 text-green-400"></i>Link Facebook</span>
+                        <span class="flex items-center"><i class="fas fa-check mr-1 text-green-400"></i>Tên Discord (ví dụ: salyvn)</span>
+                    </div>
+                </form>
+
+                <div id="search-results" class="hidden">
+                    <h3 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Kết quả tìm kiếm</h3>
+                    <div id="results-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                    </div>
+                </div>
+
+                <div id="no-results" class="hidden text-center py-8">
+                    <i class="fas fa-check-circle text-green-400 text-5xl mb-4"></i>
+                    <p class="text-xl">Không tìm thấy báo cáo nào cho người chơi này.</p>
+                    <p class="text-gray-400 mt-2">Điều này không đảm bảo an toàn tuyệt đối. Luôn cẩn trọng khi giao dịch.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="report" class="mb-16">
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center">
+                    <i class="fas fa-exclamation-triangle mr-2 text-yellow-400"></i>Báo cáo lừa đảo
+                </h2>
+                <form id="report-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label for="minecraft-name" class="block mb-2 font-medium">Tên Minecraft <span class="text-red-500">*</span></label>
+                            <input type="text" id="minecraft-name" required
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="discord-id" class="block mb-2 font-medium">ID Discord <span class="text-red-500">*</span></label>
+                            <input type="text" id="discord-id" required placeholder="Ví dụ: 704862684889219173"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="discord-name" class="block mb-2 font-medium">Tên Discord</label>
+                            <input type="text" id="discord-name" placeholder="Ví dụ: salyvn"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="facebook-link" class="block mb-2 font-medium">Link Facebook</label>
+                            <input type="url" id="facebook-link" placeholder="https://facebook.com/username"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        </div>
+                        <div>
+                            <label for="server" class="block mb-2 font-medium">Server Discord</label>
+                            <select id="server" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                                <option value="">-- Chọn server discord người dùng đang ở--</option>
+                                <option value="StellaStudio">StellaStudio</option>
+                                <option value="other">Khác (ghi rõ trong mô tả)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="proof-images" class="block mb-2 font-medium">Ảnh bằng chứng <span class="text-red-500">*</span></label>
+                            <input type="text" id="proof-images" required placeholder="Link ảnh (Imgur, Discord, v.v.)"
+                                class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400">
+                            <p class="text-sm text-gray-400 mt-1">Nhập link ảnh, phân cách bằng dấu phẩy nếu có nhiều ảnh</p>
+                        </div>
+                    </div>
+                    <div class="mb-6">
+                        <label for="incident-description" class="block mb-2 font-medium">Mô tả vụ việc <span class="text-red-500">*</span></label>
+                        <textarea id="incident-description" rows="5" required placeholder="Mô tả chi tiết vụ việc lừa đảo..."
+                            class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+                    </div>
+                    <div class="flex justify-center">
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200">
+                            <i class="fas fa-paper-plane mr-2"></i>Gửi báo cáo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+
+        <section id="about" class="mb-16">
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center">
+                    <i class="fas fa-info-circle mr-2 text-blue-400"></i>Giới thiệu
+                </h2>
+                <div class="prose prose-lg prose-invert max-w-none">
+                    <section>
+                        <p>
+                          <strong>CheckScam</strong> là nền tảng phi lợi nhuận được tạo ra nhằm giúp cộng đồng Minecraft Việt Nam phòng tránh lừa đảo trong giao dịch.
+                        </p>
+
+                        <p>Trang web này hoạt động dựa trên các nguyên tắc sau:</p>
+
+                        <ul>
+                          <li>✅ Miễn phí và mã nguồn mở, dữ liệu minh bạch trên GitHub</li>
+                          <li>🧭 Chỉ cung cấp thông tin tham khảo</li>
+                          <li>🛡️ Bảo vệ người tố cáo, cho phép báo cáo ẩn danh</li>
+                          <li>🤝 Thông tin từ nhiều nguồn vì vậy không được coi là bằng chứng xác thực.</li>
+                        </ul>
+
+
+                        <p>
+                          💡 Dự án được phát triển và duy trì bởi cộng đồng và StellaStudio. Mọi đóng góp đều được chào đón!
+                        </p>
+                      </section>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p class="mb-4">Stella-CheckScam - Nền tảng tra cứu và báo cáo lừa đảo cho cộng đồng Minecraft Việt Nam</p>
+            <p class="text-gray-400 text-sm">
+                <a href="https://github.com/checkscammcvn/checkscammcvn.github.io" target="_blank" class="hover:text-white transition-colors duration-200">
+                    <i class="fab fa-github mr-1"></i>GitHub
+                </a>
+                | Bản quyền thuộc về StellaStudio
+            </p>
+        </div>
+    </footer>
+
+
+    <script src="js/main.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/report.js"></script>
+    <script src="js/github-integration.js"></script>
+</body>
+</html>

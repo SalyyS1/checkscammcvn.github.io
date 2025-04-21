@@ -1,0 +1,27 @@
+[
+  {
+    "id": "aemcstudio",
+    "name": "AEMCStudio",
+    "website": "https://aemcstudio.com"
+  },
+  {
+    "id": "mmovnstudio",
+    "name": "MMOVNStudio",
+    "website": "https://mmovnstudio.com"
+  },
+  {
+    "id": "stellastudio",
+    "name": "StellaStudio",
+    "website": "https://stellastudio.com"
+  },
+  {
+    "id": "stellasmp",
+    "name": "StellaSMP",
+    "website": "https://stellasmp.com"
+  },
+  {
+    "id": "other",
+    "name": "Khác (ghi rõ trong mô tả)",
+    "website": null
+  }
+]
