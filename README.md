@@ -1,113 +1,43 @@
-# Hướng dẫn triển khai CheckScam Minecraft với GitHub Issues API
+# 🌌 CheckScamMCVN – Nền tảng tra cứu lừa đảo Minecraft Việt Nam
 
-## Giới thiệu
+**CheckScamMCVN** là một nền tảng cộng đồng phi lợi nhuận, được tạo ra nhằm giúp người chơi Minecraft tại Việt Nam **phòng tránh các hành vi lừa đảo trong giao dịch** như: mua bán vật phẩm, tài khoản, vật phẩm plugin, quyền lợi VIP, v.v.
 
-Đây là phiên bản cải tiến của trang web CheckScam Minecraft, sử dụng GitHub Issues API để lưu trữ và quản lý báo cáo. Phiên bản này giải quyết các vấn đề sau:
+Trang web này hoạt động công khai, minh bạch, được triển khai hoàn toàn trên **GitHub Pages** với **mã nguồn mở**. Mọi báo cáo đều được lưu trữ công khai và có thể được kiểm chứng bởi bất kỳ thành viên nào trong cộng đồng.
 
-1. **Vấn đề giao diện thống kê**: Cải thiện giao diện với kích thước và căn chỉnh nhất quán
-2. **Vấn đề lưu trữ dữ liệu**: Sử dụng GitHub Issues để lưu trữ báo cáo công khai
-3. **Vấn đề hệ thống bình chọn**: Triển khai hệ thống bình chọn sử dụng Reactions API với giới hạn mỗi IP chỉ được bình chọn một lần
-4. **Vấn đề cập nhật thống kê**: Tự động cập nhật thống kê từ dữ liệu GitHub Issues
+---
 
-## Cấu trúc thư mục
+## 🎯 Mục tiêu dự án
 
-```
-checkscam-github-issues/
-├── css/
-│   └── improved-styles.css
-├── js/
-│   ├── github-issues-api.js
-│   ├── ui-integration.js
-│   └── main-app.js
-└── index.html
-```
+- Bảo vệ cộng đồng Minecraft khỏi các hành vi lừa đảo ngày càng tinh vi
+- Tăng độ minh bạch khi giao dịch trên các server hoặc fanpage
+- Cung cấp một kho dữ liệu mở để người dùng **tra cứu trước khi giao dịch**
 
-## Hướng dẫn triển khai
+---
 
-### 1. Chuẩn bị GitHub Repository
+## 🔍 Tính năng chính
 
-1. Đảm bảo repository của bạn (https://github.com/SalyyS1/checkscammcvn.github.io) đã được thiết lập đúng cách
-2. Tạo các nhãn (labels) sau trong repository:
-   - `scam-report`: Nhãn cơ bản cho tất cả báo cáo
-   - `pending`: Trạng thái chờ xác minh
-   - `verified`: Trạng thái đã xác minh
-   - `resolved`: Trạng thái đã giải quyết
-   - `false-report`: Trạng thái báo cáo sai
+- **Tra cứu người chơi**: Dễ dàng tìm kiếm theo tên Minecraft, ID Discord hoặc liên kết Facebook.
+- **Gửi báo cáo**: Người dùng có thể tạo báo cáo nặc danh, đính kèm bằng chứng rõ ràng.
+- **Xác minh cộng đồng**: Cho phép cộng đồng bình chọn xác thực hoặc phản đối mỗi báo cáo.
+- **Hệ thống nhãn trạng thái**: Mỗi báo cáo được gắn các trạng thái như `pending`, `verified`, `resolved`, `false-report` để người đọc dễ theo dõi.
+- **Thống kê minh bạch**: Hiển thị số lượng báo cáo, bình chọn, trạng thái phổ biến và top người bị tố cáo.
 
-### 2. Tạo GitHub Personal Access Token (Tùy chọn)
+---
 
-Để cho phép tạo báo cáo mà không yêu cầu người dùng đăng nhập, bạn cần tạo một GitHub Personal Access Token:
+## 🧾 Nguyên tắc hoạt động
 
-1. Truy cập https://github.com/settings/tokens
-2. Nhấp vào "Generate new token" > "Generate new token (classic)"
-3. Đặt tên cho token (ví dụ: "CheckScam Minecraft")
-4. Chọn phạm vi (scopes): `repo` (để có quyền truy cập đầy đủ vào repository)
-5. Nhấp vào "Generate token"
-6. Sao chép token và lưu trữ an toàn
+- Miễn phí và mã nguồn mở.
+- Không đưa ra kết luận pháp lý hay hình sự.
+- Luôn bảo vệ quyền riêng tư của người tố cáo.
+- Dữ liệu hoàn toàn minh bạch, có thể kiểm chứng trên GitHub.
 
-### 3. Cấu hình ứng dụng
+---
 
-Mở file `js/main-app.js` và cập nhật cấu hình:
 
-```javascript
-const GITHUB_CONFIG = {
-  owner: 'SalyyS1',
-  repo: 'checkscammcvn.github.io',
-  // Thêm token của bạn ở đây (tùy chọn)
-  token: 'YOUR_GITHUB_TOKEN'
-};
-```
+## 🤝 Đóng góp & Hỗ trợ
 
-**Lưu ý về bảo mật**: Trong môi trường sản xuất, không nên lưu trữ token trực tiếp trong mã nguồn. Thay vào đó, bạn nên sử dụng một proxy server để xử lý các yêu cầu API cần xác thực.
+Dự án được duy trì bởi cộng đồng. Mọi ý tưởng, báo cáo lỗi, hoặc đóng góp mã nguồn đều được hoan nghênh!
 
-### 4. Tải lên GitHub Pages
+---
 
-1. Sao chép tất cả các file trong thư mục `checkscam-github-issues` vào repository GitHub của bạn
-2. Đảm bảo cấu trúc thư mục được giữ nguyên
-3. Commit và push các thay đổi lên branch chính (main hoặc master)
-4. GitHub Pages sẽ tự động triển khai trang web của bạn
-
-## Tính năng
-
-### Báo cáo lừa đảo
-
-- Người dùng có thể gửi báo cáo mà không cần đăng nhập GitHub
-- Báo cáo được lưu trữ dưới dạng GitHub Issues
-- Mỗi báo cáo bao gồm thông tin chi tiết về người bị tố cáo và bằng chứng
-
-### Tìm kiếm báo cáo
-
-- Tìm kiếm theo tên Minecraft, ID Discord, hoặc link Facebook
-- Hiển thị kết quả với trạng thái và số lượng bình chọn
-
-### Hệ thống bình chọn
-
-- Người dùng có thể xác nhận hoặc phản đối báo cáo
-- Mỗi IP chỉ được bình chọn một lần cho mỗi báo cáo
-- Bình chọn được lưu trữ dưới dạng reactions trên GitHub Issues
-
-### Thống kê
-
-- Hiển thị tổng số báo cáo, số báo cáo đã xác minh, đã giải quyết, đang chờ xử lý
-- Hiển thị tổng số lượt bình chọn
-- Hiển thị top 3 người bị tố cáo nhiều nhất
-
-## Quản trị viên
-
-Với tư cách là quản trị viên repository, bạn có thể:
-
-1. Thay đổi trạng thái báo cáo bằng cách thêm/xóa nhãn trên GitHub Issues
-2. Xóa báo cáo sai bằng cách đóng Issues
-3. Thêm bình luận để cung cấp thông tin bổ sung
-
-## Khắc phục sự cố
-
-Nếu bạn gặp vấn đề với trang web, hãy kiểm tra:
-
-1. Console của trình duyệt (F12) để xem lỗi JavaScript
-2. Đảm bảo GitHub Token có đủ quyền truy cập
-3. Kiểm tra cấu hình CORS nếu bạn gặp lỗi khi gọi API
-
-## Hỗ trợ
-
-Nếu bạn cần hỗ trợ thêm, vui lòng tạo một Issue mới trong repository GitHub của bạn.
+**CheckScamMCVN – Cẩn thận không bao giờ thừa.**
