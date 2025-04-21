@@ -24,11 +24,14 @@ class DirectGitHubSubmission {
     const reportId = this.generateReportId(existingReports);
     const currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
     
-    // Split proof images by comma and trim whitespace
-    const proofImages = formData.proofImages
-      .split(',')
-      .map(url => url.trim())
-      .filter(url => url.length > 0);
+    // Handle uploaded images
+    const proofImages = [];
+    if (Array.isArray(formData.proofImages)) {
+      // Process uploaded images and store their data
+      formData.proofImages.forEach(image => {
+        proofImages.push(image.data);
+      });
+    }
     
     return {
       id: reportId,
