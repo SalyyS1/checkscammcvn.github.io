@@ -1,0 +1,95 @@
+[
+  {
+    "id": "SCAM-0001",
+    "name": "StellaVN",
+    "discord": "704862684889219173",
+    "discord_name": "salyvn",
+    "facebook": "https://facebook.com/stella.mc",
+    "server": "StellaSMP",
+    "date": "2025-04-01",
+    "description": "Lừa đảo 10 block diamond và 5 netherite ingot. Hứa trade nhưng block và unfriend sau khi nhận đồ.",
+    "proof": [
+      "https://i.imgur.com/xyz123.png",
+      "https://i.imgur.com/abc456.png"
+    ],
+    "status": "verified",
+    "votes": {
+      "confirm": 8,
+      "deny": 1
+    }
+  },
+  {
+    "id": "SCAM-0002",
+    "name": "MCPlayer123",
+    "discord": "123456789012345678",
+    "discord_name": "mcplayer123",
+    "facebook": "https://facebook.com/mcplayer",
+    "server": "AEMCStudio",
+    "date": "2025-03-15",
+    "description": "Nhận tiền mua rank VIP nhưng không thực hiện. Block tất cả liên lạc sau khi nhận tiền.",
+    "proof": [
+      "https://i.imgur.com/proof1.png"
+    ],
+    "status": "pending",
+    "votes": {
+      "confirm": 3,
+      "deny": 2
+    }
+  },
+  {
+    "id": "SCAM-0003",
+    "name": "CraftMaster",
+    "discord": "987654321098765432",
+    "discord_name": "craftmaster",
+    "facebook": "https://facebook.com/craft.master",
+    "server": "MMOVNStudio",
+    "date": "2025-02-20",
+    "description": "Lừa đảo item hiếm từ event. Hứa trade nhưng không thực hiện sau khi nhận đồ.",
+    "proof": [
+      "https://i.imgur.com/proof2.png",
+      "https://i.imgur.com/proof3.png"
+    ],
+    "status": "resolved",
+    "votes": {
+      "confirm": 12,
+      "deny": 0
+    }
+  },
+  {
+    "id": "SCAM-0004",
+    "name": "DiamondThief",
+    "discord": "111222333444555666",
+    "discord_name": "diamond_thief",
+    "facebook": "https://facebook.com/diamond.thief",
+    "server": "StellaStudio",
+    "date": "2025-01-10",
+    "description": "Lừa đảo trong giao dịch trao đổi item. Đã nhận 64 diamond block nhưng không giao netherite như đã hứa.",
+    "proof": [
+      "https://i.imgur.com/proof4.png",
+      "https://i.imgur.com/proof5.png"
+    ],
+    "status": "verified",
+    "votes": {
+      "confirm": 15,
+      "deny": 2
+    }
+  },
+  {
+    "id": "SCAM-0005",
+    "name": "FakeAdmin",
+    "discord": "999888777666555444",
+    "discord_name": "admin_official",
+    "facebook": "https://facebook.com/fake.admin",
+    "server": "AEMCStudio",
+    "date": "2025-02-05",
+    "description": "Giả danh admin server, lừa người chơi nạp tiền để mua rank VIP với giá rẻ hơn.",
+    "proof": [
+      "https://i.imgur.com/proof6.png"
+    ],
+    "status": "verified",
+    "votes": {
+      "confirm": 20,
+      "deny": 0
+    }
+  }
+]
