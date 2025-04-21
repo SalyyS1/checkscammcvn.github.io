@@ -150,15 +150,16 @@ document.addEventListener('DOMContentLoaded', function() {
           <span>${formattedDate}</span>
         </div>
       </div>
-      <p class="mb-3 text-gray-300">${report.description}</p>
+      <p class="mb-3 text-gray-300">${report.description.substring(0, 100)}${report.description.length > 100 ? '...' : ''}</p>
       <div class="mb-3">
         <span class="text-gray-400 text-sm">Bằng chứng:</span>
         <div class="flex flex-wrap gap-2 mt-1">
-          ${report.proof.map((url, index) => `
-            <a href="${url}" target="_blank" class="text-blue-400 hover:text-blue-300 text-sm">
-              <i class="fas fa-image mr-1"></i>Ảnh ${index + 1}
-            </a>
-          `).join('')}
+          ${report.proof && report.proof.length > 0 ? 
+            `<button class="text-blue-400 hover:text-blue-300 text-sm" onclick="showDetailedReport(${JSON.stringify(report).replace(/"/g, '&quot;')})">
+              <i class="fas fa-images mr-1"></i>Xem ${report.proof.length} ảnh
+            </button>` : 
+            '<span class="text-gray-500 text-sm">Không có ảnh</span>'
+          }
         </div>
       </div>
       <div class="flex justify-between items-center text-sm">
@@ -166,14 +167,9 @@ document.addEventListener('DOMContentLoaded', function() {
           <span class="text-gray-400">Xác nhận:</span>
           <span class="font-bold">${voteRatio}</span>
         </div>
-        <div class="flex gap-2">
-          <button class="vote-button confirm px-2 py-1 bg-green-800 hover:bg-green-700 rounded" data-id="${report.id}" data-vote="confirm">
-            <i class="fas fa-check mr-1"></i>Xác nhận
-          </button>
-          <button class="vote-button deny px-2 py-1 bg-red-800 hover:bg-red-700 rounded" data-id="${report.id}" data-vote="deny">
-            <i class="fas fa-times mr-1"></i>Phản đối
-          </button>
-        </div>
+        <button class="text-blue-400 hover:text-blue-300" onclick="showDetailedReport(${JSON.stringify(report).replace(/"/g, '&quot;')})">
+          <i class="fas fa-search-plus mr-1"></i>Xem chi tiết
+        </button>
       </div>
     `;
     
