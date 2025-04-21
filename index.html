@@ -7,7 +7,7 @@
     <meta name="description" content="Nền tảng tra cứu và báo cáo người chơi lừa đảo trong cộng đồng Minecraft Việt Nam">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css">
-
+    <link rel="stylesheet" href="css/improved-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-900 text-white min-h-screen">
@@ -52,10 +52,11 @@
                 <h2 class="text-2xl font-bold mb-6 text-center">
                     <i class="fas fa-exclamation-circle mr-2 text-red-400"></i>Top 3 người bị tố cáo nhiều nhất
                 </h2>
-                <div id="top-scammers-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div id="top-scammers-container" class="top-scammers-container">
                     <!-- Top scammers will be populated by JavaScript -->
-                    <div class="text-center py-4">
-                        <p class="text-gray-400">Đang tải dữ liệu...</p>
+                    <div class="loading-placeholder">
+                        <i class="fas fa-spinner loading-spinner"></i>
+                        <span>Đang tải dữ liệu...</span>
                     </div>
                 </div>
             </div>
@@ -67,27 +68,11 @@
                 <h2 class="text-2xl font-bold mb-6 text-center">
                     <i class="fas fa-chart-bar mr-2 text-blue-400"></i>Thống kê
                 </h2>
-                <div id="stats-container" class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                <div id="stats-container" class="stats-container">
                     <!-- Statistics will be populated by JavaScript -->
-                    <div class="bg-gray-700 p-3 rounded-lg">
-                        <div class="text-2xl font-bold">0</div>
-                        <div class="text-sm text-gray-400">Tổng báo cáo</div>
-                    </div>
-                    <div class="bg-gray-700 p-3 rounded-lg">
-                        <div class="text-2xl font-bold text-red-400">0</div>
-                        <div class="text-sm text-gray-400">Đã xác minh</div>
-                    </div>
-                    <div class="bg-gray-700 p-3 rounded-lg">
-                        <div class="text-2xl font-bold text-green-400">0</div>
-                        <div class="text-sm text-gray-400">Đã giải quyết</div>
-                    </div>
-                    <div class="bg-gray-700 p-3 rounded-lg">
-                        <div class="text-2xl font-bold text-yellow-400">0</div>
-                        <div class="text-sm text-gray-400">Đang xác minh</div>
-                    </div>
-                    <div class="bg-gray-700 p-3 rounded-lg">
-                        <div class="text-2xl font-bold text-blue-400">0</div>
-                        <div class="text-sm text-gray-400">Lượt bình chọn</div>
+                    <div class="loading-placeholder">
+                        <i class="fas fa-spinner loading-spinner"></i>
+                        <span>Đang tải dữ liệu...</span>
                     </div>
                 </div>
             </div>
@@ -120,7 +105,7 @@
                 <div id="search-results" class="hidden">
                     <h3 class="text-xl font-bold mb-4 border-b border-gray-700 pb-2">Kết quả tìm kiếm</h3>
                     <div id="results-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-
+                        <!-- Search results will be populated by JavaScript -->
                     </div>
                 </div>
 
@@ -225,7 +210,7 @@
         <div class="container mx-auto px-4 text-center">
             <p class="mb-4">Stella-CheckScam - Nền tảng tra cứu và báo cáo lừa đảo cho cộng đồng Minecraft Việt Nam</p>
             <p class="text-gray-400 text-sm">
-                <a href="https://github.com/checkscammcvn/checkscammcvn.github.io" target="_blank" class="hover:text-white transition-colors duration-200">
+                <a href="https://github.com/SalyyS1/checkscammcvn.github.io" target="_blank" class="hover:text-white transition-colors duration-200">
                     <i class="fab fa-github mr-1"></i>GitHub
                 </a>
                 | Bản quyền thuộc về StellaStudio
@@ -233,10 +218,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript Files - Note the order is important -->
-    <script src="js/direct-github.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/search.js"></script>
-    <script src="js/report.js"></script>
+    <!-- JavaScript Files -->
+    <script src="js/github-issues-api.js"></script>
+    <script src="js/ui-integration.js"></script>
+    <script src="js/main-app.js"></script>
 </body>
 </html>
