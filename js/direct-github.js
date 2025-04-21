@@ -4,6 +4,7 @@ class DirectGitHubSubmission {
     this.repoOwner = repoOwner;
     this.repoName = repoName;
     this.baseUrl = `https://api.github.com/repos/${repoOwner}/${repoName}`;
+    this.gistStorage = new GitHubGistStorage(repoOwner);
   }
   
   // Generate a unique report ID
@@ -20,17 +21,21 @@ class DirectGitHubSubmission {
   }
   
   // Format report data for submission
-  formatReportData(formData, existingReports) {
+  async formatReportData(formData, existingReports) {
     const reportId = this.generateReportId(existingReports);
     const currentDate = new Date().toISOString().split('T')[0]; // YYYY-MM-DD format
     
-    // Handle uploaded images
-    const proofImages = [];
-    if (Array.isArray(formData.proofImages)) {
-      // Process uploaded images and store their data
-      formData.proofImages.forEach(image => {
-        proofImages.push(image.data);
-      });
+    // Handle uploaded images using GitHub Gists
+    let proofImages = [];
+    if (Array.isArray(formData.proofImages) && formData.proofImages.length > 0) {
+      // Upload images to GitHub Gists
+      const uploadResult = await this.gistStorage.uploadImages(formData.proofImages, reportId);
+      
+      if (uploadResult.success) {
+        proofImages = uploadResult.images.map(img => img.url);
+      } else {
+        throw new Error('Failed to upload images: ' + uploadResult.message);
+      }
     }
     
     return {
@@ -82,19 +87,27 @@ class DirectGitHubSubmission {
   
   // Process a report submission
   async submitReport(formData, existingReports) {
-    // Validate required fields
-    if (!formData.minecraftName || !formData.discordId || !formData.proofImages || !formData.description) {
+    try {
+      // Validate required fields
+      if (!formData.minecraftName || !formData.discordId || !formData.proofImages || !formData.description) {
+        return {
+          success: false,
+          message: 'Missing required fields'
+        };
+      }
+      
+      // Format the report data with Gist image storage
+      const reportData = await this.formatReportData(formData, existingReports);
+      
+      // Directly update the reports.json file
+      return await this.updateReportsFile(reportData, existingReports);
+    } catch (error) {
+      console.error('Error submitting report:', error);
       return {
         success: false,
-        message: 'Missing required fields'
+        message: 'Failed to submit report: ' + error.message
       };
     }
-    
-    // Format the report data
-    const reportData = this.formatReportData(formData, existingReports);
-    
-    // Directly update the reports.json file
-    return await this.updateReportsFile(reportData, existingReports);
   }
   
   // Get top reported scammers
