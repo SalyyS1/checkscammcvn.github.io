@@ -46,6 +46,52 @@
             </div>
         </section>
 
+        <!-- Top Scammers Section -->
+        <section class="mb-12">
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center">
+                    <i class="fas fa-exclamation-circle mr-2 text-red-400"></i>Top 3 người bị tố cáo nhiều nhất
+                </h2>
+                <div id="top-scammers-container" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Top scammers will be populated by JavaScript -->
+                    <div class="text-center py-4">
+                        <p class="text-gray-400">Đang tải dữ liệu...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="mb-12">
+            <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center">
+                    <i class="fas fa-chart-bar mr-2 text-blue-400"></i>Thống kê
+                </h2>
+                <div id="stats-container" class="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
+                    <!-- Statistics will be populated by JavaScript -->
+                    <div class="bg-gray-700 p-3 rounded-lg">
+                        <div class="text-2xl font-bold">0</div>
+                        <div class="text-sm text-gray-400">Tổng báo cáo</div>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg">
+                        <div class="text-2xl font-bold text-red-400">0</div>
+                        <div class="text-sm text-gray-400">Đã xác minh</div>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg">
+                        <div class="text-2xl font-bold text-green-400">0</div>
+                        <div class="text-sm text-gray-400">Đã giải quyết</div>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg">
+                        <div class="text-2xl font-bold text-yellow-400">0</div>
+                        <div class="text-sm text-gray-400">Đang xác minh</div>
+                    </div>
+                    <div class="bg-gray-700 p-3 rounded-lg">
+                        <div class="text-2xl font-bold text-blue-400">0</div>
+                        <div class="text-sm text-gray-400">Lượt bình chọn</div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="search" class="mb-16">
             <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
@@ -188,9 +234,9 @@
     </footer>
 
 
+    <script src="js/direct-github.js"></script>
     <script src="js/main.js"></script>
     <script src="js/search.js"></script>
     <script src="js/report.js"></script>
-    <script src="js/github-integration.js"></script>
 </body>
 </html>

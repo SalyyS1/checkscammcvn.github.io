@@ -1,15 +1,15 @@
-// Report submission system for CheckScamMCVN
+// Modified report.js to use direct GitHub updates without pull requests
 document.addEventListener('DOMContentLoaded', function() {
-  // Import GitHub integration
-  const GitHubReportSubmission = typeof module !== 'undefined' ? 
-    require('./github-integration.js') : window.GitHubReportSubmission;
+  // Import Direct GitHub integration
+  const DirectGitHubSubmission = typeof module !== 'undefined' ? 
+    require('./direct-github.js') : window.DirectGitHubSubmission;
   
   // DOM Elements
   const reportForm = document.getElementById('report-form');
   const submitButton = reportForm ? reportForm.querySelector('button[type="submit"]') : null;
   
-  // Initialize GitHub integration
-  const github = new GitHubReportSubmission('checkscammcvn', 'checkscammcvn.github.io');
+  // Initialize Direct GitHub integration
+  const github = new DirectGitHubSubmission('SalyyS1', 'checkscammcvn.github.io');
   
   // Initialize report form
   if (reportForm) {
@@ -62,18 +62,18 @@ document.addEventListener('DOMContentLoaded', function() {
       
       const existingReports = await response.json();
       
-      // Submit report through GitHub integration
+      // Submit report through Direct GitHub integration
       const result = await github.submitReport(formData, existingReports);
       
       if (result.success) {
         // Show success message
-        showNotification('success', 'Báo cáo đã được gửi thành công! Pull Request đã được tạo trên GitHub và đang chờ xét duyệt.');
+        showNotification('success', 'Báo cáo đã được gửi thành công! Báo cáo đã được thêm vào hệ thống.');
         
         // Reset form
         reportForm.reset();
         
         // Show additional information
-        showGitHubPRInfo(result.prUrl);
+        showReportInfo(result.reportId);
       } else {
         // Show error message
         showNotification('error', `Lỗi khi gửi báo cáo: ${result.message}`);
@@ -126,8 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 5000);
   }
   
-  // Show GitHub PR information
-  function showGitHubPRInfo(prUrl) {
+  // Show report information
+  function showReportInfo(reportId) {
     // Create info element
     const infoElement = document.createElement('div');
     infoElement.className = 'mt-6 p-4 bg-blue-900 rounded-lg fade-in';
@@ -135,12 +135,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add info content
     infoElement.innerHTML = `
       <h3 class="font-bold mb-2">Báo cáo đã được gửi thành công!</h3>
-      <p class="mb-2">Pull Request đã được tạo trên GitHub và đang chờ xét duyệt.</p>
-      <p class="text-sm">Trong môi trường thực tế, bạn có thể theo dõi trạng thái của báo cáo tại:</p>
-      <a href="${prUrl || '#'}" target="_blank" class="text-blue-300 hover:text-blue-200 block mt-2">
-        <i class="fab fa-github mr-1"></i>${prUrl || 'GitHub Pull Request'}
-      </a>
-      <p class="text-sm text-gray-400 mt-4">Lưu ý: Báo cáo sẽ được kiểm duyệt trước khi được công khai để đảm bảo tính chính xác.</p>
+      <p class="mb-2">Báo cáo của bạn đã được thêm vào hệ thống với ID: <strong>${reportId}</strong></p>
+      <p class="text-sm">Báo cáo này sẽ được hiển thị ngay lập tức trong kết quả tìm kiếm.</p>
+      <p class="text-sm text-gray-400 mt-4">Cảm ơn bạn đã đóng góp cho cộng đồng Minecraft Việt Nam.</p>
     `;
     
     // Add after form
