@@ -133,7 +133,5 @@ class DirectGitHubSubmission {
   }
 }
 
-// Export the class for use in main.js
-if (typeof module !== 'undefined') {
-  module.exports = DirectGitHubSubmission;
-}
+// Explicitly expose the class to the global window object
+window.DirectGitHubSubmission = DirectGitHubSubmission;
