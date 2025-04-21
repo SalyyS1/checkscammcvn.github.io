@@ -1,23 +1,10 @@
 // Main JavaScript file for CheckScam Minecraft
 // This file initializes the GitHub Issues API integration and UI components
 
-// Configuration
-const GITHUB_CONFIG = {
-  owner: 'SalyyS1',
-  repo: 'checkscammcvn.github.io',
-  // Token is optional for public operations, required for creating issues
-  // In production, this should be handled securely through a server-side proxy
-  token: null
-};
-
 // Initialize the application when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
   // Create GitHub Issues API instance
-  const githubApi = new GitHubIssuesAPI(
-    GITHUB_CONFIG.owner,
-    GITHUB_CONFIG.repo,
-    GITHUB_CONFIG.token
-  );
+  const githubApi = new GitHubIssuesAPI();
   
   // Create UI instance with the API
   const ui = new CheckScamUI(githubApi);

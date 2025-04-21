@@ -1,4 +1,4 @@
-// UI Integration for GitHub Issues API
+// UI Integration for GitHub Issues API via Netlify Functions
 // This file handles the UI components for the CheckScam Minecraft website
 
 class CheckScamUI {
@@ -57,7 +57,7 @@ class CheckScamUI {
         </div>
       `;
       
-      // Fetch statistics from GitHub Issues API
+      // Fetch statistics from Netlify Function
       const stats = await this.api.getStatistics();
       
       // Update the UI with the fetched statistics
@@ -107,7 +107,7 @@ class CheckScamUI {
         </div>
       `;
       
-      // Fetch top scammers from GitHub Issues API
+      // Fetch top scammers from Netlify Function
       const topScammers = await this.api.getTopScammers(3);
       
       if (topScammers.length === 0) {
@@ -177,7 +177,7 @@ class CheckScamUI {
         </div>
       `;
       
-      // Perform search using GitHub Issues API
+      // Perform search using Netlify Function
       const response = await this.api.searchReports(query);
       
       if (response.items.length === 0) {
@@ -292,7 +292,7 @@ class CheckScamUI {
           button.disabled = true;
           button.classList.add('opacity-50');
           
-          // Submit vote to GitHub Issues API
+          // Submit vote to Netlify Function
           await this.api.voteOnReport(issueNumber, voteType);
           
           // Record the vote in localStorage
@@ -362,7 +362,7 @@ class CheckScamUI {
         description
       };
       
-      // Submit report to GitHub Issues API
+      // Submit report to Netlify Function
       const response = await this.api.createReport(reportData);
       
       // Reset form
