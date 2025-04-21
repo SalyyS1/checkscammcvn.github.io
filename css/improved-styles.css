@@ -1,50 +1,38 @@
-/* CSS improvements for statistics section */
 .stats-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 2rem;
 }
 
 .stat-card {
-  background-color: #1e293b;
+  flex: 1;
+  min-width: 120px;
+  background-color: rgba(30, 41, 59, 0.8);
   border-radius: 0.5rem;
   padding: 1rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
 
 .stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
 }
 
 .stat-value {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: bold;
   margin-bottom: 0.5rem;
-  line-height: 1;
-  min-height: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .stat-label {
   font-size: 0.875rem;
   color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
-/* Color variations for different stats */
 .stat-total .stat-value {
-  color: #f8fafc;
+  color: #60a5fa;
 }
 
 .stat-verified .stat-value {
@@ -60,76 +48,85 @@
 }
 
 .stat-votes .stat-value {
-  color: #60a5fa;
+  color: #a78bfa;
 }
 
-/* Top scammers section improvements */
 .top-scammers-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1rem;
-  margin-bottom: 2rem;
 }
 
 .scammer-card {
-  background-color: #1e293b;
+  background-color: rgba(30, 41, 59, 0.8);
   border-radius: 0.5rem;
-  padding: 1.25rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  padding: 1.5rem;
   position: relative;
-  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
 }
 
 .scammer-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-5px);
 }
 
 .scammer-rank {
   position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  font-size: 1.5rem;
-  font-weight: 700;
+  top: -10px;
+  right: -10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.125rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .rank-1 {
-  color: #f87171;
+  background-color: #fbbf24;
+  color: #1e293b;
 }
 
 .rank-2 {
-  color: #facc15;
+  background-color: #94a3b8;
+  color: #1e293b;
 }
 
 .rank-3 {
-  color: #94a3b8;
+  background-color: #b45309;
+  color: white;
 }
 
 .scammer-name {
   font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-  padding-right: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: white;
 }
 
 .scammer-info {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
   margin-bottom: 1rem;
-  font-size: 0.875rem;
 }
 
 .scammer-info-label {
+  font-size: 0.75rem;
   color: #94a3b8;
+  margin-bottom: 0.25rem;
 }
 
 .scammer-stats {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .scammer-count {
@@ -138,41 +135,36 @@
 }
 
 .scammer-count-value {
-  font-weight: 700;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
+  font-weight: bold;
 }
 
 .view-details-btn {
-  background-color: #1d4ed8;
-  color: white;
-  padding: 0.5rem 0.75rem;
-  border-radius: 0.375rem;
+  background-color: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
   font-size: 0.875rem;
-  display: flex;
-  align-items: center;
   transition: background-color 0.2s ease-in-out;
 }
 
 .view-details-btn:hover {
-  background-color: #1e40af;
+  background-color: rgba(96, 165, 250, 0.3);
 }
 
-.view-details-btn i {
-  margin-right: 0.25rem;
-}
-
-/* Loading state */
 .loading-placeholder {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 2rem;
   color: #94a3b8;
 }
 
 .loading-spinner {
   animation: spin 1s linear infinite;
-  margin-right: 0.5rem;
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
 @keyframes spin {
@@ -184,22 +176,31 @@
   }
 }
 
-/* Error state */
 .error-message {
-  background-color: rgba(248, 113, 113, 0.1);
-  border-left: 4px solid #f87171;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-left: 4px solid #ef4444;
   padding: 1rem;
-  margin-bottom: 1rem;
   border-radius: 0.25rem;
+  color: #fca5a5;
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .stats-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
-  .top-scammers-container {
-    grid-template-columns: 1fr;
-  }
+.vote-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.vote-btn:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.confirm-btn:hover:not(:disabled) {
+  color: #4ade80;
+}
+
+.deny-btn:hover:not(:disabled) {
+  color: #f87171;
 }
