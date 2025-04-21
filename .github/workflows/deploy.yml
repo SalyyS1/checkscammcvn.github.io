@@ -13,6 +13,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v3
 
+      - name: Update Metadata 📊
+        run: |
+          python .github/scripts/update_metadata.py
+        
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
